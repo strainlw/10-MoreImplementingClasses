@@ -179,7 +179,7 @@ class Line(object):
 
     def __init__(self, start, end):
         self.initial_start = start
-        self.initial_start = end
+        self.initial_end = end
         self.start = start.clone()
         self.end = end.clone()
         self.number_of_clones = 0
@@ -451,7 +451,7 @@ class Line(object):
           :rtype: float
         """
         # ---------------------------------------------------------------------
-        # TODO: 7.
+        # DONE: 7.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -492,7 +492,7 @@ class Line(object):
           :rtype: int:
         """
         # ---------------------------------------------------------------------
-        # TODO: 8.
+        # DONE: 8.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -532,7 +532,7 @@ class Line(object):
         line = Line(p1, p2)
         return line
         # ---------------------------------------------------------------------
-        # TODO: 9.
+        # DONE: 9.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -565,8 +565,12 @@ class Line(object):
           :type  other_line: Line
           :rtype: Line:
         """
+        p1 = Point(self.start.x - other_line.start.x, self.start.y - other_line.start.y)
+        p2 = Point(self.end.x - other_line.end.x, self.end.y - other_line.end.y)
+        line = Line(p1, p2)
+        return line
         # ---------------------------------------------------------------------
-        # TODO: 10.
+        # DONE: 10.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -592,8 +596,11 @@ class Line(object):
         Type hints:
           :rtype: Point
         """
+
+        midpoint = Point((self.start.x+self.end.x)/2, (self.start.y+self.end.y)/2)
+        return midpoint
         # ---------------------------------------------------------------------
-        # TODO: 11.
+        # DONE: 11.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -630,7 +637,7 @@ class Line(object):
           :rtype: bool
         """
         # ---------------------------------------------------------------------
-        # TODO: 12.
+        # DONE: 12.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
@@ -666,6 +673,26 @@ class Line(object):
         # are different from each other.
         #######################################################################
 
+
+
+
+
+
+        if self.end.x != self.start.x:
+            slope1 = (self.end.y - self.start.y) / (self.end.x - self.start.x)
+        else:
+            slope1 = 0
+
+        if line2.end.x != line2.start.x:
+            slope2 = (line2.end.y - line2.start.y) / (line2.end.x - line2.start.x)
+        else:
+            slope2 = 0
+
+        if round(slope2, 12) == round(slope1, 12):
+            return True
+        else:
+            return False
+
     def reset(self):
         """
         What comes in:
@@ -695,8 +722,11 @@ class Line(object):
             print(line1)  # Should print: Line[(-3, -4), (3, 4)]
             print(line2)  # Should print: Line[(0, 1), (10, 20)]
         """
+        self.start=self.initial_start
+        self.end=self.initial_end
+
         # ---------------------------------------------------------------------
-        # TODO: 13.
+        # DONE: 13.
         #   a. READ the above specification, including the Example.
         #        ** ASK QUESTIONS AS NEEDED. **
         #        ** Be sure you understand it, ESPECIALLY the Example.
